@@ -1,3 +1,5 @@
+import '../styles/formsections.css'
+
 export default function Education({
   data,
   onChange,

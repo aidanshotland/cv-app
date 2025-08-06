@@ -55,48 +55,60 @@ function App() {
   return (
     <div className="App">
       <h1>CV Builder</h1>
-      <GeneralInfo
-        data={formData.general}
-        onChange={(newGeneral) =>
-          setFormData({ ...formData, general: newGeneral })
-        }
-        isEditing={isEditingGeneral}
-        onSubmit={() => setIsEditingGeneral(false)}
-        onEdit={() => setIsEditingGeneral(true)}
-      />
-      <Education
-        data={formData.education}
-        onChange={(newEducation) =>
-          setFormData({ ...formData, education: newEducation })
-        }
-        isEditing={isEditingEducation}
-        onSubmit={() => setIsEditingEducation(false)}
-        onEdit={() => setIsEditingEducation(true)}
-      />
-      {formData.experience.map((job, index) => (
-        <Experience
-          key={index}
-          data={job}
-          onChange={(updatedJob) => {
-            const newExperience = [...formData.experience];
-            newExperience[index] = updatedJob;
-            setFormData({ ...formData, experience: newExperience });
-          }}
-          onRemove={() => removeExperience(index)}
-          isEditing={isEditingExperience}
-          onSubmit={() => setIsEditingExperience(false)}
-          onEdit={() => setIsEditingExperience(true)}
-          canRemove={formData.experience.length > 1}
-        />
-      ))}
 
-      <button
-        onClick={addExperience}
-        disabled={formData.experience.length >= 3}
-      >
-        Add Experience
-      </button>
-      <LivePreview formData={formData} />
+      <div className="layout-container">
+        {/* Left Side – Form Section */}
+        <div className="form-section">
+          <GeneralInfo
+            data={formData.general}
+            onChange={(newGeneral) =>
+              setFormData({ ...formData, general: newGeneral })
+            }
+            isEditing={isEditingGeneral}
+            onSubmit={() => setIsEditingGeneral(false)}
+            onEdit={() => setIsEditingGeneral(true)}
+          />
+        
+          <Education
+            data={formData.education}
+            onChange={(newEducation) =>
+              setFormData({ ...formData, education: newEducation })
+            }
+            isEditing={isEditingEducation}
+            onSubmit={() => setIsEditingEducation(false)}
+            onEdit={() => setIsEditingEducation(true)}
+          />
+
+          {formData.experience.map((job, index) => (
+            <Experience
+              key={index}
+              data={job}
+              onChange={(updatedJob) => {
+                const newExperience = [...formData.experience];
+                newExperience[index] = updatedJob;
+                setFormData({ ...formData, experience: newExperience });
+              }}
+              onRemove={() => removeExperience(index)}
+              isEditing={isEditingExperience}
+              onSubmit={() => setIsEditingExperience(false)}
+              onEdit={() => setIsEditingExperience(true)}
+              canRemove={formData.experience.length > 1}
+            />
+          ))}
+
+          <button
+            onClick={addExperience}
+            disabled={formData.experience.length >= 3}
+          >
+            Add Experience
+          </button>
+        </div>
+
+        {/* Right Side – Preview Section */}
+        <div className="preview-section">
+          <LivePreview formData={formData} />
+        </div>
+      </div>
     </div>
   );
 }

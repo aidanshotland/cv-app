@@ -1,3 +1,5 @@
+import "../styles/formsections.css";
+
 export default function Experience({
   data,
   onChange,
@@ -41,11 +43,12 @@ export default function Experience({
 
           <label>
             Responsibilities:
-            <input
-              type="text"
+            <textarea
               name="responsibilities"
               value={data.responsibilities}
               onChange={handleChange}
+              rows={4} // You can adjust rows for initial height
+              style={{ width: "100%", resize: "vertical" }} // Optional inline styles for better UX
             />
           </label>
           <br />

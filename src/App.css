@@ -1,0 +1,16 @@
+.layout-container {
+    display: flex;
+    gap: 2rem;
+    align-items: flex-start
+}
+
+.form-section {
+  flex: 1;
+  max-width: 600px;
+}
+
+.preview-section {
+  flex: 1;
+  border-left: 2px solid #ccc;
+  padding-left: 2rem;
+}

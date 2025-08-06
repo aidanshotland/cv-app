@@ -1,3 +1,4 @@
+import '../styles/formsections.css'
 export default function GeneralInfo({
   data,
   onChange,
